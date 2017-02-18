@@ -1,0 +1,45 @@
+# .gitignore - - - - - - - - - - 
+# 
+# Save/Create **/pfs/.gitignore 
+
+*.class
+
+/target
+
+# Eclipse files
+
+
+**/.classpath
+**/.project
+
+*.classpath
+*.project
+
+**/.settings/
+/.settings
+/build
+/bin
+
+#Netbeans files
+
+# nbactions.xml
+# **/nb-configuration.xml
+# **/META-INF
+
+# Maven files
+
+target/
+
+
+# Local files
+
+logs/
+*.bak
+
+# Log files
+*.log
+
+*~
+
+
+*.DS_Store
