@@ -87,7 +87,7 @@ Cache-Control: no-cache
 
 # map/calc/{autonomy}/{gasprice}/{origin}-{destination}
 
-Measure the shortest distance between Origin and Destiny inside a given Map, and cost based on also given Truck's autonomy and Gas price. 
+Measure the shortest distance between Origin and Destiny inside a given Map inside HTTP Request body and cost based on also given Truck's autonomy and Gas price. 
 <br/>
 <br/>
 Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily true. 
