@@ -1,14 +1,24 @@
 # walmart-test
 
+Test built upon Java EE platform. 
+<br/>
+Web service RESTful.
+<ul>
+	<li>Tools: Eclipse, Maven and MongoDB;</li>
+	<li>Frameworks: Spring MVC, MongoJack and JGraphT</li>
+	<li>Version Control: git https://github.com/dsasoft/walmart-test</li>
+</ul>
 
-# In order to execute
+# Instructions
+In order to execute
+<code>mvn clean install tomcat7:run</code>
 
-Run mvn clean install tomcat7:run
-
-Use <strong>http://localhost:8401/ws/</strong>to access the Web service
-
+Use <strong>http://localhost:8401/ws/</strong> URL to access the Web service
 
 # map/sample
+
+Display a Map example
+
 <pre>
 HTTP request:<br/>
 GET /ws/map/sample HTTP/1.1
@@ -17,14 +27,18 @@ Content-Type: application/json
 Cache-Control: no-cache
 </pre>
 Return
-<pre>
-{"name":"example-map","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
+<code>
 
-</pre>
+{"name":"example-map","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
+	
+</code>
 
 # map/save
-<pre>
+
+Save new Map
+
 JQuery request:<br/>
+<code>
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -40,9 +54,11 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
-</pre>
+</code>
 
 # map/search/{name}
+
+Search for Map by given name
 
 <pre>
 HTTP request:<br/>
@@ -50,11 +66,16 @@ GET /ws/map/search/map-004 HTTP/1.1
 Host: localhost:8401
 Content-Type: application/json
 Cache-Control: no-cache
-</pre><pre>
+</pre><code>
 {"name":"map-004","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
-</pre>
+</code>
 
 # map/calc/{name}/{autonomy}/{gasprice}/{origin}-{destination}
+Measure the shortest distance between Origin and Destiny inside already saved Map, and cost based on also given Truck's autonomy and Gas price.
+<br/>
+<br/>
+Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily true. <br/> 
+It uses JGraphT Dijkstra algorithm implementation.
 
 <pre>
 HTTP request:<br>
@@ -62,12 +83,18 @@ GET /ws/map/calc/map-003/10/2.5/A-D HTTP/1.1
 Host: localhost:8401
 Content-Type: application/json
 Cache-Control: no-cache
-Postman-Token: 0968b9d9-a570-060a-6766-36b435cad974
 </pre>
 
 # map/calc/{autonomy}/{gasprice}/{origin}-{destination}
-<pre>
+Measure the shortest distance between Origin and Destiny inside a given Map, and cost based on also given Truck's autonomy and Gas price. 
+<br/>
+<br/>
+Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily true. 
+<br/>
+It uses JGraphT Dijkstra algorithm implementation.
+
 JQuery request:</br>
+<code>
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -83,4 +110,4 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
-<pre>
+<code>
