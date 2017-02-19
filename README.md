@@ -28,9 +28,7 @@ Cache-Control: no-cache
 </pre>
 Return
 <code>
-
 {"name":"example-map","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
-	
 </code>
 
 # map/save
@@ -66,17 +64,19 @@ GET /ws/map/search/map-004 HTTP/1.1
 Host: localhost:8401
 Content-Type: application/json
 Cache-Control: no-cache
-</pre><code>
+</pre>
+Return
+<code>
 {"name":"map-004","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
 </code>
 
 # map/calc/{name}/{autonomy}/{gasprice}/{origin}-{destination}
+
 Measure the shortest distance between Origin and Destiny inside already saved Map, and cost based on also given Truck's autonomy and Gas price.
 <br/>
 <br/>
 Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily true. <br/> 
 It uses JGraphT Dijkstra algorithm implementation.
-
 <pre>
 HTTP request:<br>
 GET /ws/map/calc/map-003/10/2.5/A-D HTTP/1.1
@@ -86,6 +86,7 @@ Cache-Control: no-cache
 </pre>
 
 # map/calc/{autonomy}/{gasprice}/{origin}-{destination}
+
 Measure the shortest distance between Origin and Destiny inside a given Map, and cost based on also given Truck's autonomy and Gas price. 
 <br/>
 <br/>
