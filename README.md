@@ -13,7 +13,7 @@ Web service RESTful.
 
 It's possible to persist and retrieve a Map, through the methods available, but also it's possible send a Map inside HTTP POST Body of request, and get the result right away.
 
-In order to execute Maven command line: 
+In order to execute, use Maven command line: 
 <code>mvn clean install tomcat7:run</code>
 
 
@@ -116,4 +116,4 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
-<code>
+</code>
