@@ -10,8 +10,13 @@ Web service RESTful.
 </ul>
 
 # Instructions
-In order to execute
+
+It's possible to persist retrieve a Map, through the methods available, but also it's possible send a Map inside HTTP POST Body of request, and get the result right away.
+
+In order to execute Maven command line: 
 <code>mvn clean install tomcat7:run</code>
+
+
 
 Use <strong>http://localhost:8401/ws/</strong> URL to access the Web service
 
@@ -75,7 +80,7 @@ Return
 Measure the shortest distance between Origin and Destiny inside already saved Map, and cost based on also given Truck's autonomy and Gas price.
 <br/>
 <br/>
-Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily true. <br/> 
+Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily the same distance. <br/> 
 It uses JGraphT Dijkstra algorithm implementation.
 <pre>
 HTTP request:<br>
@@ -90,7 +95,7 @@ Cache-Control: no-cache
 Measure the shortest distance between Origin and Destiny inside a given Map inside HTTP Request body and cost based on also given Truck's autonomy and Gas price. 
 <br/>
 <br/>
-Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily true. 
+Following the premise that the Map's values is only one way. For example: The distance between A to B is 15, the reverse (B to A) is not necessarily the same distance. 
 <br/>
 It uses JGraphT Dijkstra algorithm implementation.
 
