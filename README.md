@@ -11,7 +11,7 @@ Web service RESTful.
 
 # Instructions
 
-It's possible to persist retrieve a Map, through the methods available, but also it's possible send a Map inside HTTP POST Body of request, and get the result right away.
+It's possible to persist and retrieve a Map, through the methods available, but also it's possible send a Map inside HTTP POST Body of request, and get the result right away.
 
 In order to execute Maven command line: 
 <code>mvn clean install tomcat7:run</code>
