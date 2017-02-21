@@ -20,6 +20,10 @@ In order to execute, use Maven command line:
 
 Use <strong>http://localhost:8401/ws/</strong> URL to access the Web service
 
+# API documentation
+
+It's available an API documentation on http://localhost:8401/ws/swagger-ui.html
+
 # map/sample
 
 Display a Map example
