@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@ComponentScan(basePackages = { "br.com.dsasoft.walmart.test.resources" })
+@ComponentScan(basePackages = { "br.com.dsasoft.walmart.test.resources", "br.com.dsasoft.walmart.test.service" })
 @EnableWebMvc
 @EnableSwagger2
 public class SpringConfig extends WebMvcConfigurerAdapter {

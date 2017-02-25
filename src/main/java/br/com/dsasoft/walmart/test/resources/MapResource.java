@@ -7,8 +7,7 @@ import java.util.List;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
-import org.mongojack.JacksonDBCollection;
-import org.mongojack.WriteResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +15,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dsasoft.walmart.test.model.Outline;
 import br.com.dsasoft.walmart.test.model.Result;
 import br.com.dsasoft.walmart.test.model.Route;
-
-import com.mongodb.DB;
-import com.mongodb.MongoClient;
+import br.com.dsasoft.walmart.test.service.MapService;
 
 @RestController
 public class MapResource {
 
-	private DB db;
-	private MongoClient mongoClient;
-	private static final String COLLECTION_NAME = "walmart";
+	@Autowired
+	private MapService service;
 
 	/**
 	 * Display a Map example
@@ -41,7 +36,6 @@ public class MapResource {
 	 * @author @dsasoft
 	 */
 	@RequestMapping(value = "/map/sample", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
 	public ResponseEntity<Outline> map() {
 		Outline map = new Outline();
 		map.setName("example-map");
@@ -64,19 +58,16 @@ public class MapResource {
 	 * @return Saved Id
 	 * @author @dsasot
 	 */
-	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "map/save", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-	@ResponseBody
 	public ResponseEntity<String> saveMap(@RequestBody Outline map) {
+		String savedId;
 
-		this.mongoClient = new MongoClient("localhost", 27017);
-		this.db = mongoClient.getDB("db");
+		if (map.getName() != null)
+			savedId = service.saveMap(map);
+		else
+			throw new RuntimeException("Map name must be filled");
 
-		JacksonDBCollection<Outline, String> coll = JacksonDBCollection.wrap(db.getCollection(COLLECTION_NAME),
-				Outline.class, String.class);
-		WriteResult<Outline, String> result = coll.insert(map);
-
-		return new ResponseEntity<String>(result.getSavedId(), HttpStatus.OK);
+		return new ResponseEntity<String>(savedId, HttpStatus.OK);
 	}
 
 	/**
@@ -87,14 +78,11 @@ public class MapResource {
 	 * @author @dsasoft
 	 * @return Return found Map
 	 */
-	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "map/search/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Outline> retrieveMap(@PathVariable("name") String name) {
-		this.mongoClient = new MongoClient("localhost", 27017);
-		this.db = mongoClient.getDB("db");
-		JacksonDBCollection<Outline, String> coll = JacksonDBCollection.wrap(db.getCollection(COLLECTION_NAME),
-				Outline.class, String.class);
-		Outline result = coll.findOneById(name);
+
+		Outline result = service.retrieveMap(name);
+
 		return new ResponseEntity<Outline>(result, HttpStatus.OK);
 	}
 
@@ -123,18 +111,12 @@ public class MapResource {
 	 * @author @dsasoft
 	 * @return Shorted Path and Cost on "application/json;charset=UTF-8" format
 	 */
-	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/map/calc/{name}/{autonomy}/{gasprice}/{origin}-{destination}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
 	public ResponseEntity<Result> calcOnSavedMap(@PathVariable("name") String name,
 			@PathVariable("autonomy") int autonomy, @PathVariable("gasprice") double gasPrice,
 			@PathVariable("origin") String origin, @PathVariable("destination") String destination) {
 
-		this.mongoClient = new MongoClient("localhost", 27017);
-		this.db = mongoClient.getDB("db");
-		JacksonDBCollection<Outline, String> coll = JacksonDBCollection.wrap(db.getCollection(COLLECTION_NAME),
-				Outline.class, String.class);
-		Outline map = coll.findOneById(name);
+		Outline map = service.retrieveMap(name);
 
 		return calc(map, autonomy, gasPrice, origin, destination);
 	}
@@ -164,7 +146,6 @@ public class MapResource {
 	 * @return Shorted Path and Cost on "application/json;charset=UTF-8" format
 	 */
 	@RequestMapping(value = "/map/calc/{autonomy}/{gasprice}/{origin}-{destination}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
 	public ResponseEntity<Result> calc(@RequestBody Outline map, @PathVariable("autonomy") int autonomy,
 			@PathVariable("gasprice") double gasPrice, @PathVariable("origin") String origin,
 			@PathVariable("destination") String destination) {
