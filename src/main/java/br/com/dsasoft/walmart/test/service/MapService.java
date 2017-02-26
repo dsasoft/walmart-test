@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import br.com.dsasoft.walmart.test.model.Outline;
-
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+
+import br.com.dsasoft.walmart.test.model.Outline;
 
 @Service
 public class MapService {
@@ -25,8 +25,9 @@ public class MapService {
 
 	private DB db;
 
+	@SuppressWarnings("deprecation")
 	public String saveMap(Outline map) {
-
+		db = mongoClient.getDB(dbName);
 		JacksonDBCollection<Outline, String> coll = JacksonDBCollection.wrap(
 				db.getCollection(COLLECTION_NAME), Outline.class, String.class);
 		WriteResult<Outline, String> result = coll.insert(map);
