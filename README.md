@@ -15,19 +15,20 @@ It's possible to persist and retrieve a Map, through the methods available, but 
 
 In order to execute, use Maven command line: 
 <code>mvn clean install tomcat7:run</code>
-Use <strong>http://localhost:8401/ws/</strong> URL to access the Web service
 <br/>
-In order to debug the code, use a remote debug option.
-<br/>
-Run	<code>mvnDebug clean install tomcat7:run</code>
-<br/>
-Then use the steps, to setup your remote debug, for example in Eclipse IDE, go to:
+Use <strong>http://localhost:8401/ws/</strong> URL to access the Web service<br/><br/>
+
+In order to debug the code, use a Maven remote debug option.<br/>
+
+Run	<code>mvnDebug clean install tomcat7:run</code><br/>
+
+Then use the steps, to setup your remote debug, for example in Eclipse IDE, go to Menu:
 <br/>Run / Debug Configuration...
 <ul>
 	<li>Project: {ProjectName}</li> 
 	<li>Connection Type: Standard (Socket Attach)</li>
 	<li>Host: localhost</li>
-	<li>Port: 8080</li>
+	<li>Port: 8000</li>
 </ul>
 
 # API documentation
