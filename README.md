@@ -5,7 +5,7 @@ Test built upon Java EE platform.
 Web service RESTful.
 <ul>
 	<li>Tools: Eclipse, Maven and MongoDB;</li>
-	<li>Frameworks: Spring MVC, MongoJack and JGraphT</li>
+	<li>Frameworks: Spring MVC, MongoJack, Swagger UI and JGraphT</li>
 	<li>Version Control: git https://github.com/dsasoft/walmart-test</li>
 </ul>
 
