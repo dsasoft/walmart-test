@@ -31,6 +31,8 @@ Then use the steps, to setup your remote debug, for example in Eclipse IDE, go t
 	<li>Port: 8000</li>
 </ul>
 
+![Eclipse setup](https://github.com/dsasoft/walmart-test/blob/master/ScreenShot.Eclipse.RemoteDebug.png)
+
 # API documentation
 
 It's available an API documentation on http://localhost:8401/ws/swagger-ui.html
