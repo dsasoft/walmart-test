@@ -49,10 +49,45 @@ Content-Type: application/json
 Cache-Control: no-cache
 </pre>
 Return
+<pre>
 <code>
-{"name":"example-map","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
+{
+   "name":"example-map",
+   "routes":[
+      {
+         "origin":"A",
+         "destination":"B",
+         "distance":10
+      },
+      {
+         "origin":"B",
+         "destination":"D",
+         "distance":15
+      },
+      {
+         "origin":"A",
+         "destination":"C",
+         "distance":20
+      },
+      {
+         "origin":"C",
+         "destination":"D",
+         "distance":30
+      },
+      {
+         "origin":"B",
+         "destination":"E",
+         "distance":50
+      },
+      {
+         "origin":"D",
+         "destination":"E",
+         "distance":30
+      }
+   ]
+}
 </code>
-
+</pre>
 # map/save
 
 Save new Map
@@ -89,7 +124,41 @@ Cache-Control: no-cache
 </pre>
 Return
 <code>
-{"name":"map-004","routes":[{"origin":"A","destination":"B","distance":10},{"origin":"B","destination":"D","distance":15},{"origin":"A","destination":"C","distance":20},{"origin":"C","destination":"D","distance":30},{"origin":"B","destination":"E","distance":50},{"origin":"D","destination":"E","distance":30}]}
+{
+   "name":"map-004",
+   "routes":[
+      {
+         "origin":"A",
+         "destination":"B",
+         "distance":10
+      },
+      {
+         "origin":"B",
+         "destination":"D",
+         "distance":15
+      },
+      {
+         "origin":"A",
+         "destination":"C",
+         "distance":20
+      },
+      {
+         "origin":"C",
+         "destination":"D",
+         "distance":30
+      },
+      {
+         "origin":"B",
+         "destination":"E",
+         "distance":50
+      },
+      {
+         "origin":"D",
+         "destination":"E",
+         "distance":30
+      }
+   ]
+}
 </code>
 
 # map/calc/{name}/{autonomy}/{gasprice}/{origin}-{destination}
