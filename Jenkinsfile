@@ -4,7 +4,6 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Build walmart-test'
-        sh 'sh run_build_script.sh'
       }
     }
 
