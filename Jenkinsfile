@@ -12,12 +12,14 @@ pipeline {
         stage('Linux Test') {
           steps {
             echo 'Run Linux Tests'
+            sh 'mvn clean package'
           }
         }
 
         stage('Windows Test') {
           steps {
             echo 'Run Windows Tests'
+            sh 'mvn verify'
           }
         }
 
