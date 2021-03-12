@@ -40,7 +40,7 @@ pipeline {
   }
   post {
     always {
-      archiveArtifacts(artifacts: 'target/test.war', fingerprint: true)
+      archiveArtifacts(artifacts: 'test.war', fingerprint: true)
     }
 
     failure {
